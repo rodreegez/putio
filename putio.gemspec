@@ -1,0 +1,18 @@
+# -*- encoding: utf-8 -*-
+
+Gem::Specification.new do |s|
+  s.name        = "Putio"
+  s.version     = "0.0.0"
+  s.platform    = Gem::Platform::RUBY
+  s.authors     = ["Adam Rogers"]
+  s.email       = ["adam@rodreegez.com"]
+  s.homepage    = "http://rubygems.org/gems/putio"
+  s.summary     = %q{A ruby wrapper for the Putio API}
+  s.description = %q{A simple ruby interface to the api at http://api.put.io}
+
+  s.rubyforge_project = "putio"
+
+  s.files         = `git ls-files`.split("\n")
+  s.test_files    = `git ls-files -- {test}/*`.split("\n")
+  s.require_paths = ["lib"]
+end
