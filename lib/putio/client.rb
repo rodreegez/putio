@@ -1,5 +1,5 @@
-require 'Net/http'
-
+require "net/http"
+require "uri"
 require 'putio/user'
 
 module Putio
@@ -13,9 +13,11 @@ module Putio
     end
 
     def request
-      Net::HTTP.get_response(%Q{http://api.put.io/v1/} +
-          %Q{#{@klass}?method=#{@action}} +
-          %Q{&request={"api_key":"#{@api_key}","api_secret":"#{@api_secret}","params":{}}})
+      http = Net::HTTP.new("api.put.io")
+      request = Net::HTTP::Put.new(%Q{/v1/#{@klass}?method=#{@action}&request=})
+      request.set_form_data(%Q{{"api_key":"#{@api_key}","api_secret":"#{@api_secret}","params":{}}})
+      response = http.request(request)
+      response.body
     end
   end
 end
