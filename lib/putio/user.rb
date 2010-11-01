@@ -1,5 +1,7 @@
 module User
   def get_user_info
-    Array.new
+    @klass  = 'user'
+    @action = 'info'
+    request
   end
 end
