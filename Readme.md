@@ -1,16 +1,16 @@
-A simple interface to the API at http://api.put.io.
+A ruby interface to the API at http://api.put.io.
 
 ## Usage ##
 
     require 'putio'
 
-    p = Putio.new('api_key', 'api_secret')
-    => 
+    p = Putio.new('abc', '123')
+    => #<Putio::Client:0x1006f2c40 @api_secret="123", @api_key="abc">
 
-    p.user.info
+    p.get_user_info
     =>
 
-    p.files.list
+    p.get_file_list
     =>
 
     ...
