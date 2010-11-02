@@ -14,6 +14,6 @@ def fixture_file(filename)
 end
 
 def stub(path, file)
-  response = { :body => fixture(file), :content_type => 'text/json' }
-  FakeWeb.register_uri(:get, path, response)
+  response = { :body => fixture_file(file), :content_type => 'text/json' }
+  FakeWeb.register_uri(:put, path, response)
 end
