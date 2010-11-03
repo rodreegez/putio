@@ -13,9 +13,15 @@ module Putio
       @api_secret = api_secret
     end
 
+    # rather than define everything, method_missing splits
+    # the method name. expects: 
+    #
+    #     <http request type>_<class>_<action>
+    #
+    # follwed by any args.
     def method_missing(name, *args)
       arguments = name.split('_')
-      @http = arguments.first
+      @http_type = arguments.first
       @klass = arguments[1]
       @method = arguments.last
       @params = *args
