@@ -1,6 +1,8 @@
-require "net/http"
-require "uri"
-require "cgi"
+require 'net/http'
+require 'rubygems'
+require 'json'
+require 'uri'
+require 'cgi'
 
 module Putio
   class Client
@@ -30,10 +32,8 @@ module Putio
 
     def make_request
       if @http_type == 'get'
-        request = Net::HTTP::Get.new(request_url + request_params)
-        response = Net::HTTP.start(BaseUrl.host, BaseUrl.port) {|http|
-          http.get request
-        }
+        url = 'http://api.put.io/v1/' + request_url + request_params
+        response = Net::HTTP.get_response(URI.parse(url))
         response.body
       elsif @http_type == 'post'
         request = Net::HTTP::Post.new(BaseUrl.path + request_url)
@@ -52,7 +52,10 @@ module Putio
     end
 
     def request_params
-      %Q{"api_key":"#{@api_key}","api_secret":"#{@api_secret}","params":{}}
+      params = {:api_key => @api_key, :api_secret => @api_secret, :params => {}}.to_json
+      CGI::escape params
+      puts params
+      params
     end
   end
 end

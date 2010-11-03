@@ -16,6 +16,8 @@ Gem::Specification.new do |s|
   s.test_files    = `git ls-files -- {test}/*`.split("\n")
   s.require_paths = ["lib"]
 
+  s.add_dependency 'json', '1.4.6'
+
   s.add_development_dependency 'shoulda', '2.11.3'
   s.add_development_dependency 'omg'
 end

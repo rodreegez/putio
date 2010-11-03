@@ -2,10 +2,12 @@ PATH
   remote: .
   specs:
     putio (0.0.0)
+      json (= 1.4.6)
 
 GEM
   remote: http://rubygems.org/
   specs:
+    json (1.4.6)
     omg (0.0.6)
     shoulda (2.11.3)
 
@@ -13,6 +15,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  json (= 1.4.6)
   omg
   putio!
   shoulda (= 2.11.3)
