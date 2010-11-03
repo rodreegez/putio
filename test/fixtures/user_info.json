@@ -1,1 +1,1 @@
-{"test":"data"}
+{"response": {"total": 1, "results": [{"name": "rodreegez", "friends_count": 1, "bw_avail_last_month": "462774811875", "shared_space": 0, "shared_items": 0, "bw_quota_available": "496108387615", "disk_quota": "53687091200", "disk_quota_available": "13259450609", "bw_quota": "53687091200"}]}, "error": false, "user_name": "rodreegez", "id": 2183}
