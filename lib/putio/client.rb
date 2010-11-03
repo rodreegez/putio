@@ -1,12 +1,12 @@
 require "net/http"
 require "uri"
 require "cgi"
-require 'putio/user'
 
 module Putio
   class Client
-    include User
     attr_accessor :api_key, :api_secret, :klass, :action
+
+    BaseUrl = URI.parse('http://api.put.io/v1')
 
     def initialize(api_key, api_secret)
       @api_key = api_key
@@ -20,22 +20,38 @@ module Putio
     #
     # follwed by any args.
     def method_missing(name, *args)
-      arguments = name.split('_')
+      arguments = name.to_s.split('_')
       @http_type = arguments.first
       @klass = arguments[1]
       @method = arguments.last
       @params = *args
-      request
+      make_request
     end
 
-    def request
-      http = Net::HTTP.new("api.put.io")
-      escaped_path = URI.escape(
-      %Q{/v1/#{@klass}?method=#{@action}&request={"api_key":"#{@api_key}","api_secret":"#{@api_secret}","params":{}}}
-      )
-      request = Net::HTTP::Get.new(escaped_path)
-      response = http.request(request)
-      response.body
+    private
+    make_request = lambda do
+      if @http_type == 'get'
+        request = Net::HTTP::Get.new(request_url + request_params)
+        response = Net::HTTP.start(BaseUrl.host, BaseUrl.port) {|http|
+          http.get request
+        }
+        response.body
+      elsif @http_type == 'post'
+        request = Net::HTTP::Post.new(BaseUrl.path + request_url)
+        request.set_form_data(request_params)
+        response = Net::HTTP.new(BaseUrl.host, BaseUrl.port).start {|http| 
+          http.request(request) 
+        }
+        response.body
+      end
+    end
+
+    def request_url
+      %Q{#{@klass}?method=#{@action}&request=}
+    end
+
+    def request_params
+      %Q{"api_key":"#{@api_key}","api_secret":"#{@api_secret}","params":{}}
     end
   end
 end
