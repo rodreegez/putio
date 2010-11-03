@@ -23,13 +23,12 @@ module Putio
       arguments = name.to_s.split('_')
       @http_type = arguments.first
       @klass = arguments[1]
-      @method = arguments.last
+      @action = arguments.last
       @params = *args
       make_request
     end
 
-    private
-    make_request = lambda do
+    def make_request
       if @http_type == 'get'
         request = Net::HTTP::Get.new(request_url + request_params)
         response = Net::HTTP.start(BaseUrl.host, BaseUrl.port) {|http|
@@ -43,6 +42,8 @@ module Putio
           http.request(request) 
         }
         response.body
+      else
+        "you're shit out of luck, son"
       end
     end
 
