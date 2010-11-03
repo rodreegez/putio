@@ -6,11 +6,13 @@ PATH
 GEM
   remote: http://rubygems.org/
   specs:
+    omg (0.0.6)
     shoulda (2.11.3)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  omg
   putio!
   shoulda (= 2.11.3)
