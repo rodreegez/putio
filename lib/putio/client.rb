@@ -32,8 +32,8 @@ module Putio
 
     def make_request
       if @http_type == 'get'
-        url = 'http://api.put.io/v1/' + request_url + request_params
-        response = Net::HTTP.get_response(URI.parse(url))
+        url = (URI.parse('http://api.put.io/v1/' + request_url) + request_params)
+        response = Net::HTTP.get_response(url)
         response.body
       elsif @http_type == 'post'
         request = Net::HTTP::Post.new(BaseUrl.path + request_url)
@@ -52,10 +52,8 @@ module Putio
     end
 
     def request_params
-      params = {:api_key => @api_key, :api_secret => @api_secret, :params => {}}.to_json
-      CGI::escape params
-      puts params
-      params
+      params_to_json = {:api_key => @api_key, :api_secret => @api_secret, :params => {}}.to_json
+      escaped_params = CGI::escape(params_to_json)
     end
   end
 end
