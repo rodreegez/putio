@@ -1,6 +1,7 @@
 require 'net/http'
 require 'rubygems'
 require 'crack/json'
+require 'hashie'
 require 'json'
 require 'uri'
 require 'cgi'
