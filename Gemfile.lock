@@ -3,12 +3,14 @@ PATH
   specs:
     putio (0.0.0)
       crack (= 0.1.8)
+      hashie (= 0.4.0)
       json (= 1.4.6)
 
 GEM
   remote: http://rubygems.org/
   specs:
     crack (0.1.8)
+    hashie (0.4.0)
     json (1.4.6)
     omg (0.0.6)
     shoulda (2.11.3)
@@ -18,6 +20,7 @@ PLATFORMS
 
 DEPENDENCIES
   crack (= 0.1.8)
+  hashie (= 0.4.0)
   json (= 1.4.6)
   omg
   putio!

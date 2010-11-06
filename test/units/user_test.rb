@@ -7,7 +7,7 @@ class UserTest < Test::Unit::TestCase
       stub(%r(http://api.put.io/v1/user*), 'user_info.json')
       user_info = @putio.get_user_info
 
-      assert_equal "rodreegez", user_info[0]["name"]
+      assert_equal "rodreegez", user_info.name
     end
   end
 end
