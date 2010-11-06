@@ -53,7 +53,7 @@ module Putio
 
     def parse_response(response)
       parsed = Crack::JSON.parse response
-      parsed['response']['results'][0]
+      parsed['response']['results']
     end
 
     def request_url
