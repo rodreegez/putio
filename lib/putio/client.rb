@@ -1,5 +1,6 @@
 require 'net/http'
 require 'rubygems'
+require 'crack/json'
 require 'json'
 require 'uri'
 require 'cgi'
@@ -30,21 +31,29 @@ module Putio
       make_request
     end
 
+    private
     def make_request
       if @http_type == 'get'
-        url = (URI.parse('http://api.put.io/v1/' + request_url) + request_params)
+        first_bit = 'http://api.put.io/v1/' + request_url
+        whole_thing = first_bit + request_params
+        url = URI.parse(whole_thing)
         response = Net::HTTP.get_response(url)
-        response.body
+        parse_response(response.body)
       elsif @http_type == 'post'
         request = Net::HTTP::Post.new(BaseUrl.path + request_url)
         request.set_form_data(request_params)
         response = Net::HTTP.new(BaseUrl.host, BaseUrl.port).start {|http| 
           http.request(request) 
         }
-        response.body
       else
+        # TODO: Raise Putio::Error or something
         "you're shit out of luck, son"
       end
+    end
+
+    def parse_response(response)
+      parsed = Crack::JSON.parse response
+      parsed['response']['results'][0]
     end
 
     def request_url
