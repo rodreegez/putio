@@ -23,12 +23,12 @@ module Putio
     #     <http request type>_<class>_<action>
     #
     # follwed by any args.
-    def method_missing(name, *args)
+    def method_missing(name, args={})
       arguments = name.to_s.split('_')
       @http_type = arguments.first
       @klass = arguments[1]
       @action = arguments.last
-      @params = *args
+      @params = args
       make_request
     end
 
@@ -53,8 +53,9 @@ module Putio
     end
 
     def parse_response(response)
-      parsed = Crack::JSON.parse response
-      Hashie::Mash.new(parsed)
+      parsed = Crack::JSON.parse(response)
+      mashed_response = Hashie::Mash.new(parsed)
+      mashed_response.response.results
     end
 
     def request_url
@@ -62,7 +63,7 @@ module Putio
     end
 
     def request_params
-      params_to_json = {:api_key => @api_key, :api_secret => @api_secret, :params => {}}.to_json
+      params_to_json = {:api_key => @api_key, :api_secret => @api_secret, :params => @params}.to_json
       escaped_params = CGI::escape(params_to_json)
     end
   end
