@@ -9,7 +9,6 @@ require 'putio/user'
 
 module Putio
   class Client
-
     include User
 
     attr_writer :api_key, :api_secret, :klass, :action
@@ -46,11 +45,12 @@ module Putio
         response = Net::HTTP.get_response(url)
         parse_response(response.body)
       elsif @http_type == 'post'
-        request = Net::HTTP::Post.new(BaseUrl.path + request_url)
-        request.set_form_data(request_params)
-        response = Net::HTTP.new(BaseUrl.host, BaseUrl.port).start {|http| 
-          http.request(request) 
-        }
+        url = URI.parse('http://api.put.io/v1')
+        http = Net::HTTP.new(url.host, url.port)
+        request = Net::HTTP::Post.new(url.request_uri)
+        request.set_form_data(form_data)
+        response = http.request(request)
+        parse_response(response.body)
       else
         # TODO: Raise Putio::Error or something
         "you're shit out of luck, son"

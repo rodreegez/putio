@@ -13,7 +13,12 @@ def fixture_file(filename)
   File.read(file_path)
 end
 
-def stub(path, file)
+def stub_get(path, file)
   response = { :body => fixture_file(file), :content_type => 'text/json' }
   FakeWeb.register_uri(:get, path, response)
+end
+
+def stub_post(path, file)
+  response = { :body => fixture_file(file), :content_type => 'text/json' }
+  FakeWeb.register_uri(:post, path, response)
 end
