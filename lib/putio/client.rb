@@ -45,10 +45,10 @@ module Putio
         response = Net::HTTP.get_response(url)
         parse_response(response.body)
       elsif @http_type == 'post'
-        url = URI.parse('http://api.put.io/v1')
+        url = URI.parse("http://api.put.io/v1/#{@klass}")
         http = Net::HTTP.new(url.host, url.port)
         request = Net::HTTP::Post.new(url.request_uri)
-        request.set_form_data(form_data)
+        request.set_form_data(params)
         response = http.request(request)
         parse_response(response.body)
       else
@@ -58,6 +58,7 @@ module Putio
     end
 
     def parse_response(response)
+      response.inspect
       parsed = Crack::JSON.parse(response)
       mashed_response = Hashie::Mash.new(parsed)
       @response = mashed_response.response.results
@@ -65,6 +66,10 @@ module Putio
 
     def request_url
       %Q{#{@klass}?method=#{@action}&request=}
+    end
+
+    def params
+      {:method => @action, :request => {:api_key => @api_key, :api_secret => @api_secret, :params => @params}.to_json}
     end
 
     def request_params
