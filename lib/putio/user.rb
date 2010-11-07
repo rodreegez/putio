@@ -1,14 +1,10 @@
 module User
-
   def get_user_info
-    @klass  = 'user'
+    @http_type = 'get'
+    @klass = 'user'
     @action = 'info'
-    request
-  end
-
-  def get_user_friends
-    @klass  = 'user'
-    @action = 'friends'
-    request
+    @params = {}
+    make_request
+    @response.first
   end
 end

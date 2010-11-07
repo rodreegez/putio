@@ -5,10 +5,15 @@ require 'hashie'
 require 'json'
 require 'uri'
 require 'cgi'
+require 'putio/user'
 
 module Putio
   class Client
-    attr_accessor :api_key, :api_secret, :klass, :action
+
+    include User
+
+    attr_writer :api_key, :api_secret, :klass, :action
+    attr_reader :response
 
     BaseUrl = URI.parse('http://api.put.io/v1')
 
@@ -55,7 +60,7 @@ module Putio
     def parse_response(response)
       parsed = Crack::JSON.parse(response)
       mashed_response = Hashie::Mash.new(parsed)
-      mashed_response.response.results
+      @response = mashed_response.response.results
     end
 
     def request_url
