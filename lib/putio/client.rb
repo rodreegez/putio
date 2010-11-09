@@ -39,13 +39,11 @@ module Putio
     private
     def make_request
       if @http_type == 'get'
-        first_bit = 'http://api.put.io/v1/' + request_url
-        whole_thing = first_bit + request_params
-        url = URI.parse(whole_thing)
+        url = URI.parse(request_url + request_params)
         response = Net::HTTP.get_response(url)
         parse_response(response.body)
       elsif @http_type == 'post'
-        url = URI.parse("http://api.put.io/v1/" + request_url)
+        url = URI.parse(request_url)
         http = Net::HTTP.new(url.host, url.port)
         request = Net::HTTP::Post.new(url.request_uri)
         request.set_form_data(request_params)
@@ -65,7 +63,7 @@ module Putio
     end
 
     def request_url
-      %Q{#{@klass}?method=#{@action}&request=}
+      'http://api.put.io/v1/' + %Q{#{@klass}?method=#{@action}&request=}
     end
 
     def request_params
