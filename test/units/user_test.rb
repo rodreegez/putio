@@ -13,7 +13,7 @@ class UserTest < Test::Unit::TestCase
     end
 
     should %q|return user's info via POST| do
-      stub(:post, %r|http:\/\/api.put.io\/v1\/user|, 
+      stub(:post, %r|http:\/\/api.put.io\/v1\/user\?method=info|, 
            'user_info.json')
       user_info = @putio.post_user_info
 
@@ -29,7 +29,7 @@ class UserTest < Test::Unit::TestCase
     end
 
     should %q|return user's friends via POST| do
-      stub(:post, %r|http:\/\/api.put.io\/v1\/user|, 
+      stub(:post, %r|http:\/\/api.put.io\/v1\/user\?method=friends|, 
            'user_friends.json')
       user_friends = @putio.post_user_friends
 
