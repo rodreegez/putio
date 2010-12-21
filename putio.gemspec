@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Adam Rogers"]
   s.email       = ["adam@rodreegez.com"]
-  s.homepage    = "http://rubygems.org/gems/putio"
+  s.homepage    = "http://github.com/rodreegez/putio"
   s.summary     = %q{A ruby wrapper for the Putio API}
   s.description = %q{A simple ruby interface to the api at http://api.put.io}
 
