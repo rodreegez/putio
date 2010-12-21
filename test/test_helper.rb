@@ -1,7 +1,7 @@
 require 'test/unit'
 require 'rubygems'
-require 'shoulda'
-require 'fakeweb'
+require 'bundler/setup'
+Bundler.require(:development)
 
 require 'lib/putio'
 

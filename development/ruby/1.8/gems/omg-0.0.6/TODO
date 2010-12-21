@@ -1,0 +1,1 @@
+Allow user to supply a logger and method to log with OMG.use_logger(Rails.logger, :debug)
