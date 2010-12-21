@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name        = "putio"
-  s.version     = "0.0.0"
+  s.version     = "0.0.1.pre"
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Adam Rogers"]
   s.email       = ["adam@rodreegez.com"]
@@ -22,5 +22,4 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'fakeweb', '1.3.0'
   s.add_development_dependency 'shoulda', '2.11.3'
-  s.add_development_dependency 'omg'
 end
