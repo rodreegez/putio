@@ -5,11 +5,9 @@ require 'hashie'
 require 'json'
 require 'uri'
 require 'cgi'
-require 'putio/user'
 
 module Putio
   class Client
-    include User
 
     attr_writer :api_key, :api_secret, :klass, :action
     attr_reader :response
@@ -22,7 +20,7 @@ module Putio
     end
 
     # rather than define everything, method_missing splits
-    # the method name. expects: 
+    # the method name. expects:
     #
     #     <http request type>_<class>_<action>
     #

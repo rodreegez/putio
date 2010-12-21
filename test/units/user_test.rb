@@ -5,23 +5,23 @@ class UserTest < Test::Unit::TestCase
     setup { @putio = Putio.new('abc', '123') }
 
     should %q|return user's info via GET| do
-      stub(:get, %r|http://api.put.io/v1/user\?method=info|, 
+      stub(:get, %r|http://api.put.io/v1/user\?method=info|,
            'user_info.json')
       user_info = @putio.get_user_info
 
-      assert_equal "rodreegez", user_info.name
+      assert_equal "rodreegez", user_info.first.name
     end
 
     should %q|return user's info via POST| do
-      stub(:post, %r|http:\/\/api.put.io\/v1\/user\?method=info|, 
+      stub(:post, %r|http:\/\/api.put.io\/v1\/user\?method=info|,
            'user_info.json')
       user_info = @putio.post_user_info
 
-      assert_equal "rodreegez", user_info.name
+      assert_equal "rodreegez", user_info.first.name
     end
 
     should %q|return user's friends via GET| do
-      stub(:get, %r|http:\/\/api.put.io\/v1\/user\?method=friends|, 
+      stub(:get, %r|http:\/\/api.put.io\/v1\/user\?method=friends|,
            'user_friends.json')
       user_friends = @putio.get_user_friends
 
@@ -29,7 +29,7 @@ class UserTest < Test::Unit::TestCase
     end
 
     should %q|return user's friends via POST| do
-      stub(:post, %r|http:\/\/api.put.io\/v1\/user\?method=friends|, 
+      stub(:post, %r|http:\/\/api.put.io\/v1\/user\?method=friends|,
            'user_friends.json')
       user_friends = @putio.post_user_friends
 
