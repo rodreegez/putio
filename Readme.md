@@ -14,6 +14,10 @@ e.g.
 This will return a hash of [mashies](https://github.com/intridea/hashie) that can
 be queried like a regular object.
 
+## Install ##
+
+    gem install putio --pre
+
 ## Usage ##
 
     # require the gem
