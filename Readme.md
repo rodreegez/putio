@@ -1,6 +1,7 @@
-A ruby interface to [the Put.io API](https://www.put.io/service/api)
+A ruby interface to [the Put.io API](https://www.put.io/service/api).
 
 ## About ##
+
 The Put.io api is quite complex. This gem allows you to call methods in
 the form of:
 
@@ -10,7 +11,7 @@ e.g.
 
     get_user_info
 
-This will return an array of [mashes](https://github.com/intridea/hashie) that can
+This will return a hash of [mashies](https://github.com/intridea/hashie) that can
 be queried like a regular object.
 
 ## Usage ##
@@ -26,6 +27,6 @@ be queried like a regular object.
     info = p.get_user_info
     => [<#Hashie::Mash dir_id="7731413" id="8664" name="Adam Rogers">]
 
-    # query the array
+    # query the hash
     info.first.name
     => "Adam Rogers"
