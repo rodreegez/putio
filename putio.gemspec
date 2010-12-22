@@ -19,7 +19,4 @@ Gem::Specification.new do |s|
   s.add_dependency 'json', '1.4.6'
   s.add_dependency 'crack', '0.1.8'
   s.add_dependency 'hashie', '0.4.0'
-
-  s.add_development_dependency 'fakeweb', '1.3.0'
-  s.add_development_dependency 'shoulda', '2.11.3'
 end
