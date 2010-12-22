@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name        = "putio"
-  s.version     = "0.0.1.pre"
+  s.version     = "0.0.1.pre2"
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Adam Rogers"]
   s.email       = ["adam@rodreegez.com"]
