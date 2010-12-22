@@ -1,7 +1,7 @@
 require 'test/unit'
 require 'rubygems'
 require 'bundler/setup'
-Bundler.require(:development)
+Bundler.require
 
 require 'lib/putio'
 
