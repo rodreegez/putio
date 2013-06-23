@@ -479,7 +479,7 @@ module Putio
         response = Curl.get(url) { |req| req.headers['Accept'] = 'application/json' }
       end
 
-      # Use Crack to parse the JSON
+      # Natively parse the JSON
       response = JSON::parse(response.body_str)
 
       # And use Hashie to present it.
@@ -520,13 +520,9 @@ module Putio
       response.headers['Accept'] = 'application/json'
       response.http_post(Curl::PostField.file('file', file))
 
-      # Use Crack to parse the JSON
-      begin
-        response = Crack::JSON.parse(response.body_str)
-      rescue Psych::SyntaxError
-        response = JSON::parse(response.body_str)
-      end
-
+      # Natively parse the JSON
+      response = JSON::parse(response.body_str)
+      
       # And use Hashie to present it.
       response = Hashie::Mash.new(response)
     end
