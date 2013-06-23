@@ -115,7 +115,8 @@ p.friend_requests
 p.deny_friend_request(username)
 
 # Send friend request
-p.make_friends_with(username)```
+p.make_friends_with(username)
+```
 
 ## Todo
 - Make Putio::Client object syntax 'chain' better (i.e. `Putio::File.new(391239123).delete`)
