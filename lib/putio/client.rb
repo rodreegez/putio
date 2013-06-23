@@ -3,7 +3,6 @@
 ##
 require 'curb'
 require 'rubygems'
-require 'crack/json'
 require 'hashie'
 require 'json'
 require 'uri'
@@ -481,11 +480,7 @@ module Putio
       end
 
       # Use Crack to parse the JSON
-      begin
-        response = Crack::JSON.parse(response.body_str)
-      rescue Psych::SyntaxError
-        response = JSON::parse(response.body_str)
-      end
+      response = JSON::parse(response.body_str)
 
       # And use Hashie to present it.
       response = Hashie::Mash.new(response)
