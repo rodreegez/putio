@@ -1,5 +1,6 @@
 module Putio
-  def self.new(api_key, api_secret)
-    Putio::Client.new(api_key, api_secret)
+  def self.new(application_id, application_secret, redirect_uri, access_token = nil)
+  	# Acts as an alias for Putio::Client.new
+    Putio::Client.new(application_id, application_secret, redirect_uri, access_token)
   end
 end

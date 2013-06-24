@@ -1,3 +1,4 @@
 .bundle/config
 Gemfile.lock
 putio*.gem
+putio-cli.gemspec
