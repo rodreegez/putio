@@ -96,7 +96,7 @@ module Putio
       end
 
       # Use Crack to parse the JSON
-      response = Crack::JSON.parse(response.body_str)
+      response = JSON.parse(response.body_str)
 
       # And use Hashie to present it.
       response = Hashie::Mash.new(response)
